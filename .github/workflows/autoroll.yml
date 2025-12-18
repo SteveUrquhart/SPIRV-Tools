@@ -44,12 +44,6 @@ jobs:
           fi
         id: update_dependencies
 
-      - name: Stage and commit changes (if any)
-        run: |
-          git add -A
-          if ! git    if ! git diff --cached --quiet; then
-            git commit -m "roll_deps: update DEPS and generated files"
-
       - name: Push changes and create PR
         if: steps.update_dependencies.outputs.changed == 'true'
         run: |
